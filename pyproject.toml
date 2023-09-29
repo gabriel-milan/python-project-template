@@ -10,9 +10,9 @@ repository = "https://github.com/gabriel-milan/python-project-template"
 keywords = ["python", "template"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "^22.3.0"
 pre-commit = "^2.18.1"
 pytest-cov = "^3.0.0"
@@ -23,6 +23,20 @@ pdoc3 = "^0.10.0"
 docs = "scripts.docs:main"
 lint = "scripts.lint:main"
 test = "scripts.test:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+include = "\\.pyi?$"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+norecursedirs = ["dist", "build", ".tox", ".eggs", "scripts"]
+addopts = ["--doctest-modules", "--cov=app", "-ra", "-v"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

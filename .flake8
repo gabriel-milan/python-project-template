@@ -1,4 +1,2 @@
 [flake8]
-exclude =
-    *cookiecutter*
 max-line-length = 100
